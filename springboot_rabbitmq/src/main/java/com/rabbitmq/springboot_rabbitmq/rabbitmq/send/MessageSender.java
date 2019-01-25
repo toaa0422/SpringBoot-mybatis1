@@ -25,7 +25,7 @@ public class MessageSender {
     public void send(){
         String context = "hello " + format.format(new Date());
         System.out.println("Sender : " + context);
-        this.rabbitTemplate.convertAndSend("Hello", context);
+        this.rabbitTemplate.convertAndSend("hello", context);
     }
 
 }

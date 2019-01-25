@@ -1,6 +1,6 @@
 spring:
   application:
-    name: Spring-boot-rabbitmq
+    name: spring-boot-rabbitmq
   rabbitmq:
     host: 39.105.167.131
     port: 5672

@@ -1,8 +1,7 @@
 package com.rabbitmq.springboot_rabbitmq;
 
-import com.rabbitmq.springboot_rabbitmq.rabbitmq.send.ManyToMany;
-import com.rabbitmq.springboot_rabbitmq.rabbitmq.send.MessageSender;
-import com.rabbitmq.springboot_rabbitmq.rabbitmq.send.OneToManySender;
+import com.rabbitmq.springboot_rabbitmq.model.User;
+import com.rabbitmq.springboot_rabbitmq.rabbitmq.send.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +50,42 @@ public class RabbitMqHelloTest {
             manyToMany.send(i);
         }
         Thread.sleep(10000l);
+    }
+
+
+    @Autowired
+    private ObjectSender objectSend;
+
+    @Test
+    public void sendObject() throws InterruptedException {
+        User user = new User();
+        user.setName("王智");
+        user.setPass("123456");
+        objectSend.send(user);
+        Thread.sleep(1000l);
+    }
+
+    @Autowired
+    private TopicSender topicSender;
+
+    @Test
+    public void topic1() throws Exception {
+        topicSender.send1();
+        Thread.sleep(1000l);
+    }
+
+    @Test
+    public void topic2() throws Exception {
+        topicSender.send2();
+        Thread.sleep(1000l);
+    }
+
+    @Autowired
+    private FanoutSender fanoutSender;
+
+    @Test
+    public void fanoutSender() throws Exception {
+        fanoutSender.send();
+        Thread.sleep(1000l);
     }
 }
